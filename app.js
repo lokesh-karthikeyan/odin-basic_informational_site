@@ -8,22 +8,23 @@ const __dirname  = path.dirname(__filename);
 const app  = express();
 const port = 3000;
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'index.html'));
-})
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
+app.get('/', (req, res) => {
+    res.render('index');
+})
 
 app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'about.html'));
+    res.render('about');
 })
 
-
 app.get('/contact-me', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'contact-me.html'));
+    res.render('contact-me');
 })
 
 app.listen(port, (error) => {
-    if (error) throw error;
+  if (error) throw error;
 
-    console.log(`Server running at http://localhost:${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 })
